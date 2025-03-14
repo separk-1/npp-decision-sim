@@ -27,19 +27,21 @@ export default function Simulation() {
     <div className="p-4">
       <h2 className="text-xl font-bold">Simulation</h2>
       {step < scenarios.length ? (
-        <div className="mt-4 p-4 border rounded shadow">
-          <p>{scenarios[step].text}</p>
-          <div className="mt-2">
-            {scenarios[step].choices.map((choice, index) => (
-              <button key={index} onClick={() => handleChoice(choice.impact)} className="mr-2 p-2 bg-blue-500 text-white rounded">
-                {choice.text}
-              </button>
-            ))}
-          </div>
+      <div className="mt-4 p-4 border rounded shadow">
+        <p>{scenarios[step].text}</p>
+        <div className="mt-2">
+          {scenarios[step].choices.map((choice, index) => (
+            <button key={index} onClick={() => handleChoice(choice.impact)} className="mr-2 p-2 bg-blue-500 text-white rounded">
+              {choice.text}
+            </button>
+          ))}
         </div>
-      ) : (
-        <Link to="/results" className="text-blue-500">View Results</Link>
-      )}
+      </div>
+    ) : (
+      <Link to="/results" className="mt-6 inline-block bg-green-500 text-white p-2 rounded">
+        View Results
+      </Link>
+    )}
 
       {/* 팀 신념 변화 그래프 추가 */}
       <div className="mt-6">
