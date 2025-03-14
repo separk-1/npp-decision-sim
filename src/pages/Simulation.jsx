@@ -1,10 +1,10 @@
-
-// src/pages/Simulation.jsx
 import { useSimulationStore } from "../context/SimulationStore";
 import { Link } from "react-router-dom";
+import BeliefGraph from "../components/BeliefGraph";  // 그래프 컴포넌트 추가
 
 export default function Simulation() {
   const { step, teamBeliefs, advanceStep, updateBeliefs } = useSimulationStore();
+
   const scenarios = [
     { text: "Valve status uncertain. Trust indicator?", choices: [
         { text: "Trust signal", impact: "reinforce" },
@@ -41,11 +41,16 @@ export default function Simulation() {
         <Link to="/results" className="text-blue-500">View Results</Link>
       )}
 
+      {/* 팀 신념 변화 그래프 추가 */}
+      <div className="mt-6">
+        <BeliefGraph />
+      </div>
+
       <div className="mt-4">
         <h3 className="font-bold">Team Beliefs</h3>
         {teamBeliefs.map((member) => (
           <div key={member.id} className="p-2 border rounded mt-1">
-            <strong>{member.name}:</strong> {member.belief}
+            <strong>{member.name}:</strong> Confidence: {member.belief}%
           </div>
         ))}
       </div>
